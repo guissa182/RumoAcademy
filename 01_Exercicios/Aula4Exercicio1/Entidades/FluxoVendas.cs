@@ -16,6 +16,7 @@ namespace Aula4Exercicio1.Entidades
             {
                 Console.WriteLine("Digite o nome do produto (ou 'q' para sair):");
                 string nomeProduto = Console.ReadLine();
+                Console.WriteLine();
                 if (nomeProduto == "q")
                 {
                     break;
@@ -41,9 +42,10 @@ namespace Aula4Exercicio1.Entidades
             foreach (var item in lucroPorProduto)
             {
                 Console.WriteLine("Produto: " + item.NomeProduto);
-                Console.WriteLine("Total de lucro: " + item.LucroTotal);
+                Console.WriteLine("Total de lucro: R$" + item.LucroTotal);
                 Console.WriteLine();
             }
+            Console.WriteLine("pausa");
         }
     
     }
