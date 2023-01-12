@@ -9,7 +9,6 @@ namespace Aula4Exercicio1.Entidades
     internal class Positivos
     {
         public float[] Numeros { get; set; }
-        public float[] NumerosPositivos { get; set; }
         public void PopulandoVetor()
         {
             Numeros = new float[15];
@@ -19,10 +18,10 @@ namespace Aula4Exercicio1.Entidades
                 Numeros[i] = float.Parse(Console.ReadLine());
             }
         }
-        public void EscrevePositivos(float[] numerosPositivos)
+        public void EscrevePositivos(float[] numero)
         {
             Console.WriteLine("\n");
-            foreach (float element in numerosPositivos)
+            foreach (float element in numero)
             {
                 if (element > 0)
                 {
