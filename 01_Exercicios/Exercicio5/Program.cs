@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using Utilitarios;
+using Exercicio5.Fluxo;
 
 namespace Exercicio5
 {
@@ -24,7 +25,7 @@ namespace Exercicio5
                 Console.Clear();
 
 
-                Fluxo fluxo = new Fluxo();
+                FluxoPrograma fluxo = new FluxoPrograma();
 
                 switch (opcao)
                 {

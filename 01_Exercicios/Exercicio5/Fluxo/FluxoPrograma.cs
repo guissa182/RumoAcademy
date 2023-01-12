@@ -7,7 +7,7 @@ using Exercicio5.Entidades;
 
 namespace Exercicio5.Fluxo
 {
-    internal class Fluxo
+    public class FluxoPrograma
     {
         public Cliente ExecutarCadastro()
         {
