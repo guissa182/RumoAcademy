@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exercicio5.Entidades;
 
-namespace Exercicio5.Entidades
+namespace Exercicio5.Fluxo
 {
     internal class Fluxo
     {
