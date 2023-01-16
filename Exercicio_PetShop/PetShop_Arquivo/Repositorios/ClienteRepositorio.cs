@@ -26,12 +26,9 @@ namespace PetShop_Arquivo.Repositorios
         {
             if (!(VerificaExistenciaCliente(cliente.CPF)))
             {
-                var sw = new StreamWriter(_caminhoBase);
-
-                sw.WriteLine($"{cliente.Nome};{cliente.CPF};{cliente.DataNascimento};{cliente.Endereco}");
+                File.AppendAllText(_caminhoBase, $"{cliente.Nome};{cliente.CPF};{cliente.DataNascimento};{cliente.Endereco}\n");
                 Console.WriteLine();
                 Console.WriteLine("Cliente cadastrado com sucesso!\n");
-                sw.Close();
             }
             Console.WriteLine("CPF já utilizado, cadastro cancelado.");
         }
