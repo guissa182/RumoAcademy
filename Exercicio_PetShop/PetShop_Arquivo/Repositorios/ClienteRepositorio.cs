@@ -38,6 +38,22 @@ namespace PetShop_Arquivo.Repositorios
 
             return ListagemClientes;
         }
+
+        public void Remover(string cpf)
+        {
+            CarregarClientesLista();
+            if (cpf != "Not Found")
+            {
+                var posicao = ListagemClientes.FindIndex(x => x.CPF == cpf);
+                ListagemClientes.RemoveAt(posicao);
+                RegravarClientes(ListagemClientes);
+                Console.WriteLine("Cliente removido com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Cliente não encontrado para remoção");
+            }
+        }
         #endregion
 
         #region Métodos Privados
@@ -81,6 +97,21 @@ namespace PetShop_Arquivo.Repositorios
             else
                 return true;
 
+        }
+
+        private void RegravarClientes(List<Cliente> clientes)
+        {
+            var sw = new StreamWriter(_caminhoBase);
+
+            foreach (var cliente in clientes)
+            {
+                sw.WriteLine(GerarLinhaCliente(cliente.CPF, cliente));
+            }
+            sw.Close();
+        }
+        private string GerarLinhaCliente(string cpf, Cliente cliente)
+        {
+            return $"{cliente.Nome};{cliente.CPF};{cliente.DataNascimento};{cliente.Endereco}";
         }
         #endregion
     }

@@ -12,7 +12,7 @@ namespace PetShop_Arquivo.Servicos
     internal class ClienteServico
     {
         private readonly Repositorios.ClienteRepositorio _repositorio;
-        public ClienteServico() 
+        public ClienteServico()
         {
             _repositorio = new Repositorios.ClienteRepositorio();
         }
@@ -27,7 +27,8 @@ namespace PetShop_Arquivo.Servicos
                 Console.WriteLine("a) Cadastrar clientes.\n" +
                                   "b) Listar clientes.\n" +
                                   "c) Buscar um cliente por CPF.\n" +
-                                  "d) Listar os aniversariantes do mês.\n");
+                                  "d) Listar os aniversariantes do mês.\n"+
+                                  "e) Remover cliente.\n");
                 Console.WriteLine("q) Para sair.\n");
 
                 char opcao = char.Parse(Console.ReadLine());
@@ -47,6 +48,9 @@ namespace PetShop_Arquivo.Servicos
                         break;
                     case 'd':
                         BuscaAniversariantes();
+                        break;
+                    case 'e':
+                        RemoveCliente();
                         break;
                 }
 
@@ -124,7 +128,7 @@ namespace PetShop_Arquivo.Servicos
                 }
             }
 
-            Cliente cliente = new Cliente(nome, cpf, dataNascimento, endereco);       
+            Cliente cliente = new Cliente(nome, cpf, dataNascimento, endereco);
             _repositorio.Inserir(cliente);
         }
         private void ListarClientes()
@@ -186,6 +190,31 @@ namespace PetShop_Arquivo.Servicos
                     Console.WriteLine($"{obj.Nome} data: {obj.DataNascimento.ToString("dd/MM")} \n");
                 }
             }
+        }
+
+        private void RemoveCliente()
+        {
+            var cpf = PerguntarIdentificador("remover");
+            _repositorio.Remover(cpf);
+        }
+        private string PerguntarIdentificador(string nomeAcao)
+        {
+            Console.WriteLine($"Por favor forneça o cpf do cliente para {nomeAcao}?");
+            string cpf = Console.ReadLine();
+            cpf = Regex.Replace(cpf, @"(\d{3})(\d{3})(\d{3})(\d{2})",
+                                    "$1.$2.$3-$4");
+            Cliente cliente = _repositorio.Listar().Find(c => c.CPF == cpf);
+            if (cliente == null)
+            {
+                Console.WriteLine("Cliente não encontrado");
+                return "Not Found";
+            }
+            else
+            {
+                return cpf;
+            }
+
+            
         }
     }
 }
